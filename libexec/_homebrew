@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if [[ "$#" > 0 ]]; then
+  HOMEBREW="$1"; shift
+fi
+
+: ${HOMEBREW:="$(cd -P -- "$(dirname -- "${BASH_SOURCE}")/.." && pwd -P)/local"}
+export HOMEBREW
+
+export PATH="::homebrew::$HOMEBREW/bin:$HOMEBREW/sbin::homebrew::$PATH"
+hash -r
+
+export MANPATH="::homebrew::$HOMEBREW/share/man::homebrew::/usr/share/man"
+
+export CFLAGS="-O2 -arch x86_64"
+unset LDFLAGS CPPFLAGS CC CXX
+#export LDFLAGS="-L$HOMEBREW/lib"
+#export CPPFLAGS="-I$HOMEBREW/include"
+#export CC="$HOMEBREW/bin/gcc"
+#export CXX="$HOMEBREW/bin/g++"
+
+phome="$(cd -P -- "$(dirname -- "${BASH_SOURCE}")/.." && pwd -P)"
+export HOMEBREW_CACHE=$phome/distfiles
