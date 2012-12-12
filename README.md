@@ -12,7 +12,7 @@ Clone the project into ~/.pancake (or anywhere, it doesn't matter).
 
 Source from .bash_profile and indicate installation in ~/install
 
-    source ~/.pancake/libexec/_profile ~/install
+    source ~/.pancake/libexec/_macports_profile ~/install
 
 # Build
 

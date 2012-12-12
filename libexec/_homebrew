@@ -1,23 +1,28 @@
-#!/bin/bash
+_bsource="$1"; shift
 
-if [[ "$#" > 0 ]]; then
-  HOMEBREW="$1"; shift
-fi
+# define command line options:
+#   var name, default, description, short option
+DEFINE_string 'cpus' '4' 'number of cpus in make' 'n'
+DEFINE_boolean 'clean' "$FLAGS_FALSE" 'delete cabal, ghc, homebrew directories' 'c'
+DEFINE_boolean 'update' "$FLAGS_FALSE" 'update cabal' 'u'
+DEFINE_string 'install' "$shome/local" 'homebrewinstall' 'I'
 
-: ${HOMEBREW:="$(cd -P -- "$(dirname -- "${BASH_SOURCE}")/.." && pwd -P)/local"}
-export HOMEBREW
+# entry point
+function main {
+  HOMEBREW="${HOMEBREW:-$FLAGS_install}"
+  require 'homebrew_profile'
 
-export PATH="::homebrew::$HOMEBREW/bin:$HOMEBREW/sbin::homebrew::$PATH"
-hash -r
+  local cmd_port="port install"
 
-export MANPATH="::homebrew::$HOMEBREW/share/man::homebrew::/usr/share/man"
+  if [[ "$FLAGS_binary" = "$FLAGS_TRUE" ]]; then
+    cmd_port="$cmd_port -b"
+  fi
 
-export CFLAGS="-O2 -arch x86_64"
-unset LDFLAGS CPPFLAGS CC CXX
-#export LDFLAGS="-L$HOMEBREW/lib"
-#export CPPFLAGS="-I$HOMEBREW/include"
-#export CC="$HOMEBREW/bin/gcc"
-#export CXX="$HOMEBREW/bin/g++"
+  if [[ "$FLAGS_source" = "$FLAGS_TRUE" ]]; then
+    cmd_port="$cmd_port -s"
+  fi
 
-phome="$(cd -P -- "$(dirname -- "${BASH_SOURCE}")/.." && pwd -P)"
-export HOMEBREW_CACHE=$phome/distfiles
+  mpmain "$@"
+}
+
+require sub "$_bsource" "$@"
