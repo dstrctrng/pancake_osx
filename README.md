@@ -5,14 +5,14 @@ XCode with command line tools from App Store
 
 # Setup
 
-Clone the project into ~/.macports (or anywhere, it doesn't matter).
+Clone the project into ~/.pancake (or anywhere, it doesn't matter).
 
-    git clone https://github.com/destructuring/macports ~/.macports
+    git clone https://github.com/destructuring/pancake ~/.pancake
     git submodule update --init --recursive
 
 Source from .bash_profile and indicate installation in ~/install
 
-    source ~/.macports/libexec/_profile ~/install
+    source ~/.pancake/libexec/_profile ~/install
 
 # Build
 
