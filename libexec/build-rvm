@@ -14,9 +14,9 @@ shome="$(cd -P -- "$(dirname -- "$0")/.." && pwd -P)"
 # load a meat library
 source "$shome/libexec/_treadstone" "$@"
 
-DEFINE_boolean reinstall "$FLAGS_FALSE" "Reinstall rubies"
-DEFINE_string rvmversion "stable" "rvm version"
-DEFINE_boolean rvm "$FLAGS_TRUE" "Install rvm"
+DEFINE_boolean reinstall "$FLAGS_FALSE" "Reinstall rubies" 'N'
+DEFINE_string rvmversion "stable" "rvm version" 'V'
+DEFINE_boolean rvm "$FLAGS_TRUE" "Install rvm" 'R'
 
 # entry point
 function mpmain {

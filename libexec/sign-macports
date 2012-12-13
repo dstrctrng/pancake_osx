@@ -14,9 +14,9 @@ source "$shome/libexec/_treadstone" "$@"
 
 # define command line options:
 #   var name, default, description, short option
-DEFINE_string 'install' "${MACPORTS:-$shome/local}" 'directory containing macports bin, var' '-I'
-DEFINE_string 'sign' "$shome/keys/local-privkey.pem" 'signing private PEM certificate'
-DEFINE_string 'verify' "$shome/keys/local-pubkey.pem" 'verifying public PEM certificate'
+DEFINE_string 'install' "${MACPORTS:-$shome/local}" 'directory containing macports bin, var' 'I'
+DEFINE_string 'sign' "$shome/keys/local-privkey.pem" 'signing private PEM certificate' 'S'
+DEFINE_string 'verify' "$shome/keys/local-pubkey.pem" 'verifying public PEM certificate' 'V'
 
 # entry point
 function main {
