@@ -1,5 +1,6 @@
 ---
 remotes:
   primary: git@github.com:destructuring/pancake
-  secondary: git@destructuring.org:destructuring/pancake
+  secondary: git@bitbucket.org:destructuring/pancake
   sh: https://github.com/destructuring/jason
+  bump: https://github.com/destructuring/mixin-bump
