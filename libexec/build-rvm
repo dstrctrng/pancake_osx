@@ -14,23 +14,10 @@ shome="$(cd -P -- "$(dirname -- "$0")/.." && pwd -P)"
 # load a meat library
 source "$shome/libexec/_jason" "$@"
 
-DEFINE_boolean reinstall "$FLAGS_FALSE" "Reinstall rubies" 'N'
-DEFINE_string rvmversion "stable" "rvm version" 'V'
-DEFINE_boolean rvm "$FLAGS_TRUE" "Install rvm" 'R'
+DEFINE_boolean reinstall "$FLAGS_FALSE" "reinstall rubies"
 
 # entry point
 function mpmain {
-  if [[ "$FLAGS_rvm" = "$FLAGS_TRUE" ]]; then
-    case "$FLAGS_rvmversion" in
-      stable|master)
-        $shome/bin/rvm-install $FLAGS_rvmversion
-        ;;
-      *)
-        $shome/bin/rvm-install --version $FLAGS_rvmversion
-        ;;
-    esac
-  fi
-
   local cmd_install
   if [[ "$FLAGS_reinstall" = "$FLAGS_TRUE" ]]; then
     cmd_install="reinstall"
@@ -42,13 +29,13 @@ function mpmain {
   for nm_ruby in "$@"; do
     case $nm_ruby in
       ree)
-        $HOME/.rvm/bin/rvm-exec system $HOME/.rvm/bin/rvm $cmd_install $nm_ruby --with-openssl=$MACPORTS
+        rvm $cmd_install $nm_ruby --with-openssl=$MACPORTS
         ;;
       1.9.3)
-        $HOME/.rvm/bin/rvm-exec system $HOME/.rvm/bin/rvm $cmd_install $nm_ruby --with-opt-dir=$MACPORTS #--with-readline-dir=$MACPORTS
+        rvm $cmd_install $nm_ruby --with-opt-dir=$MACPORTS
         ;;
       *)
-        $HOME/.rvm/bin/rvm-exec system $HOME/.rvm/bin/rvm $cmd_install $nm_ruby
+        rvm $cmd_install $nm_ruby
         ;;
     esac
   done
