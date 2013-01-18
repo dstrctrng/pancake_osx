@@ -40,7 +40,7 @@ function mpmain {
   $cmd_port links
 
   # dev editors, terminals
-  $cmd_port vim +x11 +ruby
+  $cmd_port vim +x11 +ruby +python27
   $cmd_port macvim +ruby
   $cmd_port iterm2 
 
