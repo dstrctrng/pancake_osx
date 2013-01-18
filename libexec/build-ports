@@ -23,7 +23,7 @@ function mpmain {
   $cmd_port tcl +threads
 
   # dev languages
-  $cmd_port python27 py-distribute
+  $cmd_port python27 py27-distribute py27-pip
   port 'select' python python27
 
   $cmd_port autoconf libyaml ruby rb-rubygems
